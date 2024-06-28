@@ -7,6 +7,8 @@
 -- Plugin config overrides should be in a `lua/plugins/*.lua` of a matching name
 -- or in a user config, e.g. `lua/plugins/user-practicalli.lua`
 
+vim.opt.scrolloff = 5
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
