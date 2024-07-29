@@ -1,5 +1,6 @@
 # Unreleased
 
+# 2024-07-26 Initial release
 
 ## Added
 - community: enable and import clojure pack
@@ -28,7 +29,7 @@
 - clojure: conjure, paredit, parinfer, parpar & nvim-treesitter-sexp plugins
 - neo-tree: override examples, show hidden in alternate style
 - plantuml: key mapping to call out to plantuml jar or binary
-- example-config: add new plugins & override existing plugin config 
+- example-config: add new plugins & override existing plugin config
 - clojure: which-key mappings for nvim-treesitter-sexp structural editing
 - practicalli: move neovim options and key mappings from astrocore.lua
 - practicalli: set everforest theme, remove from astroui.lua
@@ -51,6 +52,11 @@
 - termux: `clojure_lsp` server excluded from mason install
 - termux: comment support for neovim 0.9.x
 - community: flatten-nvm to open files and command output in existing neovim instance
+- practicalli: add trim plugin to automatically remove whitespace
+- community: example disable of plugins from an astro community pack
+- practicalli: which-key vertical `helix` menu layout option
+- practicalli: conjure sub-menus for which-key
+- community: telescope live grep args search via file name pattern
 
 ## Changed
 - readme: expand on description and use
@@ -59,4 +65,9 @@
 - clojure: add nvim-treesitter-sexp and comment paredit plugins
 - community: 2 second navigation message timeout (nvim-notify)
 - practicalli: include AstroCommunity options for neogit, noice & zen-mode
-- practicalli: neogit key works consistently when set in plugin config 
+- practicalli: neogit key works consistently when set in plugin config
+- termux: comment neogit plugin pin, neovim 0.10.0 released for termux
+- practicalli: neogit key works consistently when set in plugin config
+- practicalli: updated config for better-escape.nvim plugin rewrite
+- community: import spectre from search category (was project)
+- astro: capitalise Leader and LocalLeader within key mapping configuration.
