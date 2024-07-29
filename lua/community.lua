@@ -53,6 +53,9 @@ return {
   -- Packs
   -- Treesitter: clojure , Lsp: clojure-lsp, Lint/format:
   { import = "astrocommunity.pack.clojure" },
+  -- Disable plugins contained in the clojure pack
+  -- { "nvim-parinfer", enabled = false },
+  -- { "nvim-treesitter-sexp", enabled = false },
   -- ----------------------------------------------
 
   -- ----------------------------------------------
@@ -62,7 +65,7 @@ return {
   -- { import = "astrocommunity.project.project-nvim" },
 
   -- Search and replace across projects
-  { import = "astrocommunity.project.nvim-spectre" },
+  { import = "astrocommunity.search.nvim-spectre" },
   -- ----------------------------------------------
 
   -- ----------------------------------------------
@@ -82,6 +85,9 @@ return {
   -- Utility
   -- rich command prompt
   { import = "astrocommunity.utility.noice-nvim" },
+
+  -- word search in specific file patterns
+  { import = "astrocommunity.utility.telescope-live-grep-args-nvim" },
   -- ----------------------------------------------
 
   -- ----------------------------------------------

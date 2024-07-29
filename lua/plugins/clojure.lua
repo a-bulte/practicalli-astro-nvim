@@ -81,14 +81,13 @@ return {
         },
         keys = {
           -- Toggle Parinfer on/off (globally)
-          { "<leader>TP", "<cmd>ParinferOn! <cr>", desc = "Toggle Parinfer" },
+          { "<Leader>TP", "<cmd>ParinferOn! <cr>", desc = "Toggle Parinfer" },
         },
       },
     },
   },
   {
     "PaterJason/nvim-treesitter-sexp",
-    branch = "treesitter-has-type-to-kind-eq",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     ft = { "clojure", "fennel", "janet", "query" },
     cmd = "TSSexp",

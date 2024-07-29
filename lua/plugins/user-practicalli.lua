@@ -19,6 +19,9 @@ if practicalli == "false" then return {} end
 
 -- if true then return {} end   INFO: Comment this line to deactivate configuration
 
+-- Which-key local to add keys
+local whichkey = require "which-key"
+
 ---@type LazySpec
 return {
 
@@ -47,8 +50,29 @@ return {
     "max397574/better-escape.nvim",
     event = "InsertCharPre",
     opts = {
-      timeout = 300,
-      mapping = { "fd" },
+      timeout = vim.o.timeoutlen,
+      default_mappings = true,
+      mappings = {
+        i = { f = { d = "<Esc>" } },
+        c = { f = { d = "<Esc>" } },
+        t = { f = { d = "<Esc>" } },
+        v = { f = { d = "<Esc>" } },
+        s = { f = { d = "<Esc>" } },
+      },
+    },
+  },
+  -- ------------------------------------------
+
+  -- ------------------------------------------
+  -- Editor tools
+  --
+  {
+    "cappyzawa/trim.nvim",
+    opts = {
+      -- override default config
+      -- ft_blocklist = {"markdown"}, -- filetype not to trim
+      -- highlight = true,
+      -- highlight_bg = "#800080", -- or 'purple'
     },
   },
   -- ------------------------------------------
@@ -117,6 +141,29 @@ return {
   -- ------------------------------------------
 
   -- ------------------------------------------
+  -- Vertically aligned menu list
+  {
+    "folke/which-key.nvim",
+    opts = {
+      ---@type false | "classic" | "modern" | "helix"
+      preset = "helix",
+    },
+
+    whichkey.add {
+      -- Conjure sub-menus
+      { "<LocalLeader>c", group = "Connect" },
+      { "<LocalLeader>e", group = "Evaluate" },
+      { "<LocalLeader>g", group = "Go" },
+      { "<LocalLeader>l", group = "Log" },
+      { "<LocalLeader>r", group = "Refresh" },
+      { "<LocalLeader>s", group = "Session" },
+      { "<LocalLeader>t", group = "Test" },
+      { "<LocalLeader>v", group = "Values" },
+    },
+  },
+  -- ------------------------------------------
+
+  -- ------------------------------------------
   -- AstroNvim UI Plugin Options
   {
     -- AstroUI provides the basis for configuring the AstroNvim User Interface
@@ -174,43 +221,47 @@ return {
           -- ["<esc>"] = false,
 
           -- Toggle last open buffer
-          ["<leader><tab>"] = { "<cmd>b#<cr>", desc = "Last tab" },
+          ["<Leader><tab>"] = { "<cmd>b#<cr>", desc = "Last tab" },
 
           -- Save prompting for file name
-          ["<leader>W"] = { ":write ", desc = "Save as file" },
+          ["<Leader>W"] = { ":write ", desc = "Save as file" },
 
           -- mappings seen under group name "Buffer"
-          ["<leader>b"] = { name = "Buffers" },
-          ["<leader>bt"] = { name = "Tabs" },
-          ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
-          ["<leader>btn"] = { "<cmd>tabNext<cr>", desc = "Next tab" },
-          ["<leader>bt<tab>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
-          -- ["<leader>bD"] = { "<cmd>Bdelete<cr>", desc = "Delete buffer" },
+          ["<Leader>b"] = { name = "Buffers" },
+          ["<Leader>bt"] = { name = "Tabs" },
+          ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
+          ["<Leader>btn"] = { "<cmd>tabNext<cr>", desc = "Next tab" },
+          ["<Leader>bt<tab>"] = { "<cmd>tabprevious<cr>", desc = "Previous tab" },
+          -- ["<Leader>bD"] = { "<cmd>Bdelete<cr>", desc = "Delete buffer" },
 
           -- Find Menu
           -- browse via directory structure, create and modify paths
-          ["<leader>fe"] = { "<cmd>Telescope file_browser<cr>", desc = "Explorer" },
+          ["<Leader>fe"] = { "<cmd>Telescope file_browser<cr>", desc = "Explorer" },
+          -- find word for specific file patterns
+          ["<Leader>fg"] = {
+            "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>",
+            desc = "Grep Word",
+          },
 
           -- Projects
-          ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Projects" },
+          ["<Leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Projects" },
 
           -- Editing
           ["zZ"] = { "<cmd>ZenMode<cr>", desc = " Zen mode" },
 
           -- Git Menu
-          -- Menu mappings
-          -- Neogit status - overrides stage hunk astronvim mapping
-          -- ["<leader>gn"] = { name = " Neogit" }, -- Neogit menu with alternate logo
-          ["<leader>gh"] = false, -- disable Reset Git Hunk mapping, used for Octo in plugins/github.lua
-          ["<leader>gH"] = { function() require("gitsigns").stage_hunk() end, desc = "Stage Git hunk" },
+          -- ["<Leader>gs"] = { "<cmd>Neogit<cr>", desc = " Status (Neogit)" },
+          -- ["<Leader>gs"] = false, -- disable git status
+          -- ["<Leader>gs"] = { function() require("neogit").open { kind = "tab" } end, desc = " Status (Neogit)" },
+          ["<Leader>gH"] = { function() require("gitsigns").stage_hunk() end, desc = "Stage Git hunk" },
           -- Gits.nvim key maps
-          ["<leader>ghg"] = { name = "Gist" },
-          ["<leader>ghgr"] = { "<cmd>GistCreate<cr>", desc = "Gist Region" },
-          ["<leader>ghgg"] = { "<cmd>GistCreateFromFile<cr>", desc = "Gist File" },
-          ["<leader>ghgl"] = { "<cmd>GistsList<cr>", desc = "List Gists" },
+          ["<Leader>ghg"] = { name = "Gist" },
+          ["<Leader>ghgr"] = { "<cmd>GistCreate<cr>", desc = "Gist Region" },
+          ["<Leader>ghgg"] = { "<cmd>GistCreateFromFile<cr>", desc = "Gist File" },
+          ["<Leader>ghgl"] = { "<cmd>GistsList<cr>", desc = "List Gists" },
         },
         t = {
-          -- terminal? mode key bindings
+          -- terminal mode key bindings
         },
         v = {
           -- visual mode key bindings
