@@ -53,6 +53,7 @@ return {
   -- Packs
   -- Treesitter: clojure , Lsp: clojure-lsp, Lint/format:
   { import = "astrocommunity.pack.clojure" },
+  { import = "astrocommunity.pack.html-css" },
   -- ----------------------------------------------
 
   -- ----------------------------------------------
